@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Core;
 using Microsoft.Maui.Dispatching;
 
 #if ANDROID
@@ -94,12 +94,12 @@ public partial class Snackbar : ISnackbar
 	/// <summary>
 	/// Show Snackbar
 	/// </summary>
-	public virtual Task Show(CancellationToken token = default) => Dispatcher.GetForCurrentThread().DispatchIfRequiredAsync(() => ShowNative(token));
+	public virtual Task Show(CancellationToken token = default) => MainThread.InvokeOnMainThreadAsync(() => ShowNative(token));
 
 	/// <summary>
 	/// Dismiss Snackbar
 	/// </summary>
-	public virtual Task Dismiss(CancellationToken token = default) => Dispatcher.GetForCurrentThread().DispatchIfRequiredAsync(() => DismissNative(token));
+	public virtual Task Dismiss(CancellationToken token = default) => MainThread.InvokeOnMainThreadAsync(() => DismissNative(token));
 
 #if !(IOS || ANDROID || MACCATALYST || WINDOWS)
 	/// <inheritdoc/>
@@ -138,7 +138,7 @@ public partial class Snackbar : ISnackbar
 #if ANDROID || IOS || MACCATALYST
 	protected virtual async ValueTask DisposeAsyncCore()
 	{
-		await Dispatcher.GetForCurrentThread().DispatchIfRequiredAsync(() => NativeSnackbar?.Dispose());
+		await MainThread.InvokeOnMainThreadAsync(() => NativeSnackbar?.Dispose());
 	}
 #else
 	protected virtual ValueTask DisposeAsyncCore()
