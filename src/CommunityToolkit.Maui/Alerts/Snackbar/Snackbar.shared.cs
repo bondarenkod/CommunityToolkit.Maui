@@ -94,12 +94,12 @@ public partial class Snackbar : ISnackbar
 	/// <summary>
 	/// Show Snackbar
 	/// </summary>
-	public virtual Task Show(CancellationToken token = default) => MainThread.InvokeOnMainThreadAsync(() => ShowPlatform(token));
+	public virtual Task Show(CancellationToken token = default) => Dispatcher.GetForCurrentThread().DispatchIfRequiredAsync(() => ShowPlatform(token));
 
 	/// <summary>
 	/// Dismiss Snackbar
 	/// </summary>
-	public virtual Task Dismiss(CancellationToken token = default) => MainThread.InvokeOnMainThreadAsync(() => DismissPlatform(token));
+	public virtual Task Dismiss(CancellationToken token = default) => Dispatcher.GetForCurrentThread().DispatchIfRequiredAsync(() => DismissPlatform(token));
 
 #if !(IOS || ANDROID || MACCATALYST || WINDOWS)
 	/// <inheritdoc/>
@@ -138,7 +138,7 @@ public partial class Snackbar : ISnackbar
 #if ANDROID || IOS || MACCATALYST
 	protected virtual async ValueTask DisposeAsyncCore()
 	{
-		await MainThread.InvokeOnMainThreadAsync<>(() => PlatformSnackbar?.Dispose());
+		await Dispatcher.GetForCurrentThread().DispatchIfRequiredAsync(() => PlatformSnackbar?.Dispose());
 	}
 #else
 	protected virtual ValueTask DisposeAsyncCore()
@@ -150,27 +150,7 @@ public partial class Snackbar : ISnackbar
 	static TimeSpan GetDefaultTimeSpan() => TimeSpan.FromSeconds(3);
 
 #if ANDROID || IOS || MACCATALYST || WINDOWS
-
-	static PlatformSnackbar? platformSnackbar;
-
-	static PlatformSnackbar? PlatformSnackbar
-	{
-		get
-		{
-			return MainThread.IsMainThread
-				? platformSnackbar
-				: throw new InvalidOperationException($"{nameof(platformSnackbar)} can only be called from the Main Thread");
-		}
-		set
-		{
-			if (!MainThread.IsMainThread)
-			{
-				throw new InvalidOperationException($"{nameof(platformSnackbar)} can only be called from the Main Thread");
-			}
-
-			platformSnackbar = value;
-		}
-	}
+	static PlatformSnackbar? PlatformSnackbar { get; set; }
 #endif
 
 	void OnShown()
