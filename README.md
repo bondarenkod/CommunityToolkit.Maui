@@ -1,10 +1,8 @@
-[![Build Status](https://dev.azure.com/dotnet/CommunityToolkit/_apis/build/status/CommunityToolkit.Maui?branchName=main)](https://dev.azure.com/dotnet/CommunityToolkit/_build/latest?definitionId=169&branchName=main)
+<img src="https://user-images.githubusercontent.com/13558917/137551073-ac8958bf-83e3-4ae3-8623-4db6dce49d02.png" alt="..NET Bot" width=125>  [<img src="https://raw.githubusercontent.com/dotnet-foundation/swag/master/logo/dotnetfoundation_v4.svg" alt=".NET Foundation" width=100>](https://dotnetfoundation.org) 
 
-[<img src="https://raw.githubusercontent.com/dotnet-foundation/swag/master/logo/dotnetfoundation_v4.svg" alt=".NET Foundation" width=100>](https://dotnetfoundation.org)
+[![Build Status](https://dev.azure.com/dotnet/CommunityToolkit/_apis/build/status/CommunityToolkit.Maui?branchName=main)](https://dev.azure.com/dotnet/CommunityToolkit/_build/latest?definitionId=169&branchName=main) [![NuGet](https://buildstats.info/nuget/CommunityToolkit.Maui?includePreReleases=true)](https://www.nuget.org/packages/CommunityToolkit.Maui/)
 
 # .NET MAUI Community Toolkit
-
-[![NuGet](https://buildstats.info/nuget/CommunityToolkit.Maui?includePreReleases=true)](https://www.nuget.org/packages/CommunityToolkit.Maui/)
 
 The .NET MAUI Community Toolkit is a collection of common elements for development with .NET MAUI that developers tend to replicate across multiple apps. It simplifies and demonstrates common developer tasks when building apps with .NET MAUI. 
 
@@ -43,7 +41,9 @@ xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
 
 ## Submitting A New Feature
 
-New features will follow the following steps:
+New features will follow the below workflow, described in more detail in the steps below
+
+[![New Feature Workflow](https://user-images.githubusercontent.com/13558917/160910778-1e61f478-f1f6-48b4-8d37-8016eae1bd12.png)](./build/workflow.sketch)
 
 ### 1. Discussion Started
 
@@ -77,7 +77,7 @@ Every new feature also requires an associated sample to be added to the .NET MAU
 ### 6. Documentation Complete 
 Before a Pull Request can be merged into the .NET MAUI Toolkit, the Pull Request Author must also submit the documentation to [documentation repository](https://github.com/MicrosoftDocs/CommunityToolkit).
 
-### 7. Merged
+### 7. Completed
 Once a Pull Request has been reviewed + approved AND the documentation has been written, submitted and approved, the new feature will be merged adding it to the .NET MAUI Toolkit
 
 ## Code of Conduct
