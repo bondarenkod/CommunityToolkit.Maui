@@ -82,4 +82,10 @@ public partial class MultiplePopupPage : BasePage<MultiplePopupViewModel>
 		var csharpBindingPopup = new CsharpBindingPopup(popupSizeConstants, csharpBindingPopupViewModel);
 		await this.ShowPopupAsync(csharpBindingPopup);
 	}
+	
+	async void DisplayChildPopupClicked(object sender, EventArgs e)
+	{
+		var popup = new DisplayChildPopup(this);
+		await this.ShowPopupAsync(popup);
+	}
 }
